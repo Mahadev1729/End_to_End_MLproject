@@ -7,3 +7,5 @@
 ***4.Stanrdization -- to standardize the units***
 
 ***Train the Model***
+
+***Try to find the best fit line in the graph***
