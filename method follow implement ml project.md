@@ -6,5 +6,4 @@
 
 ***4.Stanrdization -- to standardize the units***
 
-
-
+***Train the Model***
