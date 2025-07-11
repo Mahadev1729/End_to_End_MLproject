@@ -21,6 +21,8 @@ The dataset includes environmental features like temperature, humidity, wind, an
 4. Model training and evaluation
 5. Model deployment (optional)
 
+![ML Project Lifecycle](./Slide1.JPG)
+
 ## 🚀 How to Run
 
 ```bash
