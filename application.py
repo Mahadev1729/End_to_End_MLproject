@@ -16,5 +16,8 @@ scaler_model=pickle.load(open('models/scaler.pkl','rb'))
 def index():
     return render_template('index.html')
 
+@app.route('/predictdata',methods=['GET','POST'])
+def 
+
 if __name__=="__main__":
     app.run(host="0.0.0.0")
