@@ -4,112 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FWI Prediction</title>
+    <title>FWI Predictor - Machine Learning Project</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #dfe9f3, #ffffff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .login {
-            background: #ffffff;
-            padding: 25px 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 350px;
             box-sizing: border-box;
         }
 
-        .login h1 {
-            font-size: 20px;
-            margin-bottom: 18px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
             color: #333;
-            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        .login input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .login input:focus {
-            border-color: #0078d7;
-            outline: none;
-            box-shadow: 0 0 4px rgba(0, 120, 215, 0.3);
-        }
-
-        .login button {
-            width: 100%;
-            padding: 10px;
-            background-color: #0078d7;
-            color: white;
-            font-size: 14px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .login button:hover {
-            background-color: #005fa3;
-        }
-
-        .login h2 {
+        .subtitle {
+            color: #666;
             font-size: 16px;
-            margin-top: 18px;
-            color: #0078d7;
+            margin-bottom: 20px;
+        }
+
+        .project-info {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+
+        .project-info h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .project-info p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row input {
+            flex: 1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-input.full-width {
+            margin-bottom: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #e8f5e8;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
             text-align: center;
         }
 
-        @media (max-width: 400px) {
-            .login h1 {
-                font-size: 18px;
+        .result-text {
+            color: #155724;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
             }
 
-            .login input,
-            .login button {
-                font-size: 13px;
-                padding: 9px;
+            .form-row {
+                flex-direction: column;
+                gap: 0;
             }
 
-            .login h2 {
-                font-size: 14px;
+            .form-row input {
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🔥 FWI Predictor</h1>
+            <div class="subtitle">Machine Learning Project</div>
+        </div>
 
-    <div class="login">
-        <h1>🔥 FWI Prediction</h1>
+        <div class="project-info">
+            <h3>About This Project</h3>
+            <p>This machine learning project predicts the Forest Fire Weather Index (FWI) using environmental data. The
+                model analyzes meteorological conditions to assess fire risk levels for forest management and emergency
+                planning.</p>
+        </div>
+
         <form action="{{ url_for('predict_datapoint')}}" method="post">
-            <input type="text" name="Temperature" placeholder="Temperature" required="required">
-            <input type="text" name="RH" placeholder="Relative Humidity" required="required">
-            <input type="text" name="Ws" placeholder="Wind Speed" required="required">
-            <input type="text" name="Rain" placeholder="Rain" required="required">
-            <input type="text" name="FFMC" placeholder="FFMC" required="required">
-            <input type="text" name="DMC" placeholder="DMC" required="required">
-            <input type="text" name="ISI" placeholder="ISI" required="required">
-            <input type="text" name="Classes" placeholder="Classes" required="required">
-            <input type="text" name="Region" placeholder="Region" required="required">
+            <div class="form-row">
+                <input type="text" name="Temperature" class="form-input" placeholder="Temperature" required>
+                <input type="text" name="RH" class="form-input" placeholder="Relative Humidity" required>
+            </div>
 
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            <div class="form-row">
+                <input type="text" name="Ws" class="form-input" placeholder="Wind Speed" required>
+                <input type="text" name="Rain" class="form-input" placeholder="Rain" required>
+            </div>
+
+            <div class="form-row">
+                <input type="text" name="FFMC" class="form-input" placeholder="FFMC" required>
+                <input type="text" name="DMC" class="form-input" placeholder="DMC" required>
+            </div>
+
+            <div class="form-row">
+                <input type="text" name="ISI" class="form-input" placeholder="ISI" required>
+                <input type="text" name="Classes" class="form-input" placeholder="Classes" required>
+            </div>
+
+            <input type="text" name="Region" class="form-input full-width" placeholder="Region" required>
+
+            <button type="submit" class="submit-btn">Predict</button>
         </form>
-        <h2>THE FWI pridiction is {{results}}</h2>
-    </div>
 
+        <div class="result-box">
+            <h2 class="result-text">THE FWI prediction is {{results}}</h2>
+        </div>
+    </div>
 </body>
 
 </html>
