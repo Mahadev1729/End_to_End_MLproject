@@ -13,8 +13,8 @@ ridge_model=pickle.load(open('models/ridge.pkl','rb'))
 scaler_model=pickle.load(open('models/scaler.pkl','rb'))
 
 @app.route("/")
-def hello_world():
-    return "<h1>Hello<h>"
+def index():
+    return render_template('index.html')
 
 if __name__=="__main__":
     app.run(host="0.0.0.0")
