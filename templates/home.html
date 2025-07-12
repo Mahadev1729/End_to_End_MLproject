@@ -94,22 +94,20 @@
 
     <div class="login">
         <h1>🔥 FWI Prediction</h1>
-        <form action="{{url_for('predict_datapoint')}}" method="post">
-            <input type="number" name="Temperature" placeholder="Temperature" required="required">
-            <input type="number" name="RH" placeholder="Relative Humidity" required="required">
-            <input type="number" name="Ws" placeholder="Wind Speed" required="required">
-            <input type="number" name="Rain" placeholder="Rain" required="required">
-            <input type="number" name="FFMC" placeholder="FFMC" required="required">
-            <input type="number" name="DMC" placeholder="DMC" required="required">
-            <input type="number" name="DC" placeholder="DC" required="required">
-            <input type="number" name="ISI" placeholder="ISI" required="required">
-            <input type="number" name="BUI" placeholder="BUI" required="required">
-            <input type="text" name="Classes" placeholder="Fire Class" required="required">
-            <input type="text" name="Region" placeholder="Region" required="required" readonly>
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <input type="text" name="Temperature" placeholder="Temperature" required="required">
+            <input type="text" name="RH" placeholder="Relative Humidity" required="required">
+            <input type="text" name="Ws" placeholder="Wind Speed" required="required">
+            <input type="text" name="Rain" placeholder="Rain" required="required">
+            <input type="text" name="FFMC" placeholder="FFMC" required="required">
+            <input type="text" name="DMC" placeholder="DMC" required="required">
+            <input type="text" name="ISI" placeholder="ISI" required="required">
+            <input type="text" name="Classes" placeholder="Classes" required="required">
+            <input type="text" name="Region" placeholder="Region" required="required">
 
-            <button type="submit">Predict</button>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
         </form>
-        <h2>{{ result }}</h2>
+        <h2>THE FWI pridiction is {{results}}</h2>
     </div>
 
 </body>
