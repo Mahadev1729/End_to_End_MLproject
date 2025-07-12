@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 350px;
+            box-sizing: border-box;
+        }
+
+        .login h1 {
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: #333;
+            text-align: center;
+        }
+
+        .login input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .login input:focus {
+            border-color: #0078d7;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 120, 215, 0.3);
+        }
+
+        .login button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0078d7;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login button:hover {
+            background-color: #005fa3;
+        }
+
+        .login h2 {
+            font-size: 16px;
+            margin-top: 18px;
+            color: #0078d7;
+            text-align: center;
+        }
+
+        @media (max-width: 400px) {
+            .login h1 {
+                font-size: 18px;
+            }
+
+            .login input,
+            .login button {
+                font-size: 13px;
+                padding: 9px;
+            }
+
+            .login h2 {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login">
+        <h1>🔥 FWI Prediction</h1>
+        <form action="{{url_for('predict_datapoint')}}" method="post">
+            <input type="number" name="Temperature" placeholder="Temperature" required="required">
+            <input type="number" name="RH" placeholder="Relative Humidity" required="required">
+            <input type="number" name="Ws" placeholder="Wind Speed" required="required">
+            <input type="number" name="Rain" placeholder="Rain" required="required">
+            <input type="number" name="FFMC" placeholder="FFMC" required="required">
+            <input type="number" name="DMC" placeholder="DMC" required="required">
+            <input type="number" name="DC" placeholder="DC" required="required">
+            <input type="number" name="ISI" placeholder="ISI" required="required">
+            <input type="number" name="BUI" placeholder="BUI" required="required">
+            <input type="text" name="Classes" placeholder="Fire Class" required="required">
+            <input type="text" name="Region" placeholder="Region" required="required" readonly>
+
+            <button type="submit">Predict</button>
+        </form>
+        <h2>{{ result }}</h2>
+    </div>
+
+</body>
+
+</html>
